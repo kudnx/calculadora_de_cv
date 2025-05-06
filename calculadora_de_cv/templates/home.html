@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .calculator {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .result-list {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+            max-width: 400px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de valor crítico</h1>
+
+    <div class="calculator">
+        <h2>Calcular</h2>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="id_dano_critico">{{ form.dano_critico.label }}:</label>
+                {{ form.dano_critico }}
+            </div>
+            <div>
+                <label for="id_taxa_critico">{{ form.taxa_critica.label }}:</label>
+                {{ form.taxa_critica }}
+            </div>
+            <button type="submit">Calcular</button>
+        </form>
+    </div>
+
+    <div class="result-list">
+        <h2>Artefatos Recentes</h2>
+        {% if artefatos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Valor Crítico (CV)</th>
+                    <th>Dano crítico</th>
+                    <th>Taxa crítica</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artefato in artefatos %}
+                <tr>
+                    <td>{{ artefato.valor_critico }}</td>
+                    <td>{{ artefato.dano_critico }}</td>
+                    <td>{{ artefato.taxa_critica }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Sem Artefatos Cadastrados</p>
+        {% endif %}
+    </div>
+</body>
+</html>

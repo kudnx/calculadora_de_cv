@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "calculadora-de-valor-critico"
+version = "0.1.0"
+description = "Calculadora de valor critico para os artefatos de Genshin Impact."
+authors = ["Your Name <zluan009@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.2"
+djangorestframework = "^3.16.0"
+django-environ = "^0.12.0"
+psycopg2-binary = "^2.9.10"
+ruff = "^0.11.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
