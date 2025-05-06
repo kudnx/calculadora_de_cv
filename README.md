@@ -4,11 +4,15 @@
 
 #### Subindo o docker
 
-```docker-compose up -d```
+```
+docker-compose up -d
+```
 
 #### Instalando o poetry
 
-```poetry install```
+```
+poetry install
+```
 
 #### Executando as migrations
 
